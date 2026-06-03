@@ -1,21 +1,18 @@
-#include <chrono>
-#include <thread>
-
-#include "Logger.hpp"
+#include "MockSignalSource.hpp"
+#include "VehicleRepository.hpp"
+#include "VehicleService.hpp"
 
 int main()
 {
-    Logger::info(
-        "Vehicle Service Started");
+    MockSignalSource source;
 
-    while(true)
-    {
-        std::this_thread::sleep_for(
-            std::chrono::seconds(5));
+    VehicleRepository repository;
 
-        Logger::info(
-            "Waiting for signal source...");
-    }
+    VehicleService service(
+        source,
+        repository);
+
+    service.run();
 
     return 0;
 }
