@@ -25,7 +25,13 @@ void VehicleApi::run()
         result["rpm"] = data.rpm;
         result["fuel"] = data.fuel;
 
-        return result;
+        crow::response response(result);
+
+        response.add_header(
+            "Access-Control-Allow-Origin",
+            "*");
+
+        return response;
     });
 
     CROW_ROUTE(app, "/vehicle/speed")
@@ -38,7 +44,13 @@ void VehicleApi::run()
 
         result["speed"] = data.speed;
 
-        return result;
+        crow::response response(result);
+
+        response.add_header(
+            "Access-Control-Allow-Origin",
+            "*");
+
+        return response;
     });
 
 
@@ -52,7 +64,13 @@ void VehicleApi::run()
 
         result["rpm"] = data.rpm;
 
-        return result;
+        crow::response response(result);
+
+        response.add_header(
+            "Access-Control-Allow-Origin",
+            "*");
+
+        return response;
     });
 
     CROW_ROUTE(app, "/vehicle/fuel")
@@ -65,9 +83,15 @@ void VehicleApi::run()
 
         result["fuel"] = data.fuel;
 
-        return result;
+        crow::response response(result);
+
+        response.add_header(
+            "Access-Control-Allow-Origin",
+            "*");
+
+        return response;
     });
-    
+
     app.port(8080)
        .multithreaded()
        .run();
