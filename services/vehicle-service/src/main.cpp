@@ -1,4 +1,7 @@
+#include <thread>
+
 #include "MockSignalSource.hpp"
+#include "VehicleApi.hpp"
 #include "VehicleRepository.hpp"
 #include "VehicleService.hpp"
 
@@ -12,7 +15,24 @@ int main()
         source,
         repository);
 
-    service.run();
+    VehicleApi api(
+        repository);
+
+    std::thread serviceThread(
+        [&]()
+        {
+            service.run();
+        });
+
+    std::thread apiThread(
+        [&]()
+        {
+            api.run();
+        });
+
+    serviceThread.join();
+
+    apiThread.join();
 
     return 0;
 }
