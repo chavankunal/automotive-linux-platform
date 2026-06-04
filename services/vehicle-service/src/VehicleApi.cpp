@@ -28,6 +28,46 @@ void VehicleApi::run()
         return result;
     });
 
+    CROW_ROUTE(app, "/vehicle/speed")
+    ([this]()
+    {
+        auto data =
+            m_repository.get();
+
+        crow::json::wvalue result;
+
+        result["speed"] = data.speed;
+
+        return result;
+    });
+
+
+    CROW_ROUTE(app, "/vehicle/rpm")
+    ([this]()
+    {
+        auto data =
+            m_repository.get();
+
+        crow::json::wvalue result;
+
+        result["rpm"] = data.rpm;
+
+        return result;
+    });
+
+    CROW_ROUTE(app, "/vehicle/fuel")
+    ([this]()
+    {
+        auto data =
+            m_repository.get();
+
+        crow::json::wvalue result;
+
+        result["fuel"] = data.fuel;
+
+        return result;
+    });
+    
     app.port(8080)
        .multithreaded()
        .run();

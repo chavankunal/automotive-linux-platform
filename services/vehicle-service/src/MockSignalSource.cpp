@@ -10,6 +10,11 @@ VehicleData MockSignalSource::getData()
     data.rpm = 800 + (speed * 50);
     data.fuel = 100 - (speed / 10);
 
+    data.ignition = true;
+
+    data.engineRunning =
+        (data.speed > 0);
+
     if(speed > 120)
     {
         speed = 0;
