@@ -4,6 +4,7 @@ add_executable(
     src/main.cpp
     src/VehicleService.cpp
     src/MockSignalSource.cpp
+    src/VehicleApi.cpp
   
 )
 
